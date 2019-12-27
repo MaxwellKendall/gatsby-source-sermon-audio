@@ -1,0 +1,23 @@
+{
+  "name": "gatsby-source-sermon-audio",
+  "version": "0.1.0",
+  "description": "Uses Sermon Audio as a data source for a static website",
+  "main": "gatsby-node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sermon audio",
+    "sermons",
+    "gatsby",
+    "gatsby-source-plugin",
+    "gatsby calendar",
+    "gatsby-plugin"
+  ],
+  "author": "Maxwell Kendall",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0"
+  },
+  "homepage": "https://github.com/MaxwellKendall/gatsby-source-sermon-audio"
+}
