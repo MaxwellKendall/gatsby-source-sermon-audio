@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-sermon-audio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Uses Sermon Audio as a data source for a static website",
   "main": "gatsby-node.js",
   "scripts": {
