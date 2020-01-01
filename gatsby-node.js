@@ -3,9 +3,18 @@ const axios = require('axios');
 const defaultFieldsToInclude = ['bibleText', 'fullTitle', 'downloadCount', 'eventType', 'media', 'preachDate', 'series', 'speaker'];
 const requiredFields = ['id', 'internal', 'slug'];
 const defaultOptions = { fieldsToInclude: defaultFieldsToInclude, slugField: 'fullTitle' };
+const forbiddenChars = [',', '!', '#', '?', '.'];
 
 const getSlug = (sermon, slugField) => {
-    return sermon[slugField].split(" ").map(word => word.toLowerCase()).join("-");
+    return sermon[slugField]
+        .split(" ")
+        .map((word) => {
+            return word
+                .toLowerCase()
+                .split('')
+                .filter((char) => !forbiddenChars.includes(char))
+                .join('')
+        }).join("-");
 };
 
 const processSermons = (sermon, fieldsToInclude = defaultFieldsToInclude, slugField) => {
