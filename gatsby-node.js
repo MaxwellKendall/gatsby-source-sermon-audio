@@ -12,12 +12,6 @@ const processSermons = (sermon, fieldsToInclude = defaultFieldsToInclude, slugFi
     return Object.keys(sermon)
         .reduce((acc, key) => {
             if (fieldsToInclude.concat(requiredFields).includes(key)) {
-                if (key === 'slug') {
-                    return {
-                        ...acc,
-                        slug: getSlug(sermon, slugField)
-                    };
-                }
                 return {
                     ...acc,
                     [key]: sermon[key]
@@ -54,6 +48,7 @@ exports.sourceNodes = async ({ actions }, options = defaultOptions) => {
         .map(sermon => ({
             ...sermon,
             id: sermon.sermonID,
+            slug: getSlug(sermon, slugField),
             internal: {
                 contentDigest: sermon.sermonID,
                 type: 'Sermon'
