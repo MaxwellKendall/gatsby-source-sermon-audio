@@ -17,11 +17,18 @@ const processSermons = (sermon, fieldsToInclude = defaultFieldsToInclude) => {
         }, {});
 };
 
-const getSermons = (apiKey) => {
-    return axios.get('https://api.sermonaudio.com/v2/node/sermons', {
+const getSermons = (apiKey, query = '/v2/node/sermons', acc = []) => {
+    return axios.get(`https://api.sermonaudio.com${query}`, {
         headers: {
             'X-Api-Key': apiKey
         }
+    })
+    .then((resp) => {
+        const { data: { results, next }} = resp;
+        if (next) {
+            return getSermons(apiKey, next, [...acc, ...results])
+        }
+        return [...acc, ...results];
     });
 }
 
@@ -30,10 +37,10 @@ exports.sourceNodes = async ({ actions }, options = defaultOptions) => {
     const { createNode } = actions;
 
     // getting the list of items for calendar
-    const { data: { results }} = await getSermons(apiKey);
+    const sermons = await getSermons(apiKey);
   
     // Process data into nodes.
-    results
+    sermons
         .map(sermon => ({
             ...sermon,
             id: sermon.sermonID,
