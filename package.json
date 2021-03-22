@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-sermon-audio",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Uses Sermon Audio as a data source for a static website",
   "main": "gatsby-node.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "author": "Maxwell Kendall",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.21.1"
   },
   "homepage": "https://github.com/MaxwellKendall/gatsby-source-sermon-audio"
 }
